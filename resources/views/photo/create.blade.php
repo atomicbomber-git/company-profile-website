@@ -47,9 +47,9 @@
             <div class="container">
                 <div class="row">
                     @foreach ($photos as $photo)
-                        <div class="col-4">
+                        <div class="col-sm-4" style="margin-bottom: 20px">
                             <div class="card">
-                                <img class="card-img-top" src="{{ route("photo.show", $photo) }}">
+                                <img style="height: 160px; width: auto;" class="card-img-top" src="{{ route("photo.show", $photo) }}">
                                 <div class="card-body">
                                     <p>
                                         {{ $photo->name }}
