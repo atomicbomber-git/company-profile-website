@@ -17,7 +17,13 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
 Route::prefix("/admin")->group(function() {
-    Route::get("/", "AdminController@index")->name("admin.index");
+    Route::get("/", "AdminController@index")->name("admin");
+
+    Route::prefix("/photo")->group(function() {
+        Route::get("/create", "PhotoController@create")->name("photo.create");
+        Route::post("/store", "PhotoController@store")->name("photo.store");
+        Route::get("/{photo}", "PhotoController@show")->name("photo.show");
+    });
+
 });

@@ -15,14 +15,12 @@
                     <a class="list-group-item"> <i class="fa fa-home"></i> Halaman Depan </a>
                     <a class="list-group-item"> <i class="fa fa-list"></i> Teks Promosi </a>
                     <a class="list-group-item"> <i class="fa fa-phone"></i> Kontak </a>
-                    <a class="list-group-item"> <i class="fa fa-image"></i> Galeri </a>
+                    <a class="list-group-item" href="{{ route("photo.create") }}"> <i class="fa fa-image"></i> Galeri </a>
                 </div>
             </div>
 
             <div class="col">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi aliquid nesciunt pariatur perferendis. Eius quo amet deleniti necessitatibus dolores, reprehenderit enim alias voluptatibus ipsam, rem facere cupiditate obcaecati earum distinctio?
-                </p>
+                @yield("sub-content")
             </div>
         </div>
 
