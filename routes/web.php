@@ -11,10 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::view("/", "welcome");
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::prefix("/admin")->group(function() {
+    Route::get("/", "AdminController@index")->name("admin.index");
+});
