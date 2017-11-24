@@ -1,5 +1,11 @@
 @extends("layouts.admin")
 
+@section("title", "Kelola Galeri")
+
+@section("extra-links")
+    <link rel="stylesheet" href="{{ asset("css/sweetalert2.min.css") }}">
+@endsection
+
 @section("sub-content")
     <div class="card" style="max-width: 400px; margin-bottom: 20px">
         <div class="card-header">
@@ -54,6 +60,15 @@
                                     <p>
                                         {{ $photo->name }}
                                     </p>
+                                    <div style="text-align: right">
+                                        <a href="#" class="btn btn-success btn-sm"> <i class="fa fa-pencil"></i> </a>
+
+                                        <form style="display: inline-block;" class="form-delete" method="POST" action="{{ route("photo.destroy", $photo) }}">
+                                            <button class="btn btn-danger btn-sm"> <i class="fa fa-trash"></i> </button>
+                                            {{ csrf_field() }}
+                                            {{ method_field("DELETE") }}
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -62,4 +77,30 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section("extra-scripts")
+    <script src="{{ asset("js/sweetalert2.all.js") }}"></script>
+
+    <script>
+        $(document).ready(function() {
+            $(".form-delete").each(function(index, form) {
+                $(form).on("submit", function(event) {
+                    event.preventDefault();
+                    swal({
+                        'title': 'Konfirmasi Penghapusan',
+                        'text': 'Anda yakin ingin menghapus foto ini?',
+                        'type': 'warning',
+                        'animation': 'true',
+                        'showCancelButton': true,
+                        'confirmButtonText': 'Ya'
+                    }).then(function(result) {
+                        if (result.value) {
+                            form.submit();
+                        }
+                    });
+                });
+            });
+        });
+    </script>
 @endsection

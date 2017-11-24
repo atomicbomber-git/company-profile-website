@@ -10,7 +10,7 @@
     <div class="container">
 
         <div class="row">
-            <div class="col-3">
+            <div class="col-md-3">
                 <div class="list-group">
                     <a class="list-group-item"> <i class="fa fa-home"></i> Halaman Depan </a>
                     <a class="list-group-item"> <i class="fa fa-list"></i> Teks Promosi </a>
@@ -19,7 +19,7 @@
                 </div>
             </div>
 
-            <div class="col">
+            <div class="col-md-9">
                 @yield("sub-content")
             </div>
         </div>

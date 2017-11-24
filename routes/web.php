@@ -17,6 +17,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get("/gallery", "MainController@gallery")->name("gallery");
+
 Route::prefix("/admin")->group(function() {
     Route::get("/", "AdminController@index")->name("admin");
 
@@ -24,6 +26,7 @@ Route::prefix("/admin")->group(function() {
         Route::get("/create", "PhotoController@create")->name("photo.create");
         Route::post("/store", "PhotoController@store")->name("photo.store");
         Route::get("/{photo}", "PhotoController@show")->name("photo.show");
+        Route::delete("/{photo}/destroy", "PhotoController@destroy")->name("photo.destroy");
     });
 
 });
