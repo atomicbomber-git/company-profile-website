@@ -19,9 +19,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get("/gallery", "MainController@gallery")->name("gallery");
 
-Route::prefix("/admin")->group(function() {
-    Route::get("/", "AdminController@index")->name("admin");
+Route::get("/admin/login", "Auth\LoginController@showLoginForm")->name("login");
+Route::post("/admin/login", "Auth\LoginController@login");
+Route::post("/admin/logout", "Auth\LoginController@logout")->name("logout");
 
+Route::prefix("/admin")->middleware("auth")->group(function() {
+    Route::get("/", "AdminController@index")->name("admin");
     Route::prefix("/photo")->group(function() {
         Route::get("/create", "PhotoController@create")->name("photo.create");
         Route::post("/store", "PhotoController@store")->name("photo.store");
