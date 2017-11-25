@@ -28,7 +28,9 @@ Route::prefix("/admin")->middleware("auth")->group(function() {
     Route::prefix("/photo")->group(function() {
         Route::get("/create", "PhotoController@create")->name("photo.create");
         Route::post("/store", "PhotoController@store")->name("photo.store");
-        Route::delete("/{photo}/destroy", "PhotoController@destroy")->name("photo.destroy");
+        Route::delete("/destroy/{photo}", "PhotoController@destroy")->name("photo.destroy");
+        Route::get("/edit/{photo}", "PhotoController@edit")->name("photo.edit");
+        Route::patch("/edit/{photo}", "PhotoController@update")->name("photo.update");
     });
 });
 

@@ -24,7 +24,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="image"> Berkas: </label>
+                    <label for="image"> Berkas Foto: </label>
                     <input accept=".jpeg,.jpg,.png" id="image" name="image" type="file" class="form-control-file {{ !$errors->has("image") ?: "is-invalid" }}">
 
                     @if ($errors->first("image"))
@@ -58,10 +58,15 @@
                                 <img style="height: 160px; width: auto;" class="card-img-top" src="{{ route("photo.show", $photo) }}">
                                 <div class="card-body">
                                     <p>
-                                        {{ $photo->name }}
+                                        <div>
+                                            <div style="font-weight: bold"> {{ $photo->name }} </div>
+                                            <div class="text-muted">
+                                                {{ $photo->formattedDate() }}
+                                            </div>
+                                        </div>
                                     </p>
                                     <div style="text-align: right">
-                                        <a href="#" class="btn btn-success btn-sm"> <i class="fa fa-pencil"></i> </a>
+                                        <a href="{{ route("photo.edit", $photo) }}" class="btn btn-success btn-sm"> <i class="fa fa-pencil"></i> </a>
 
                                         <form style="display: inline-block;" class="form-delete" method="POST" action="{{ route("photo.destroy", $photo) }}">
                                             <button class="btn btn-danger btn-sm"> <i class="fa fa-trash"></i> </button>

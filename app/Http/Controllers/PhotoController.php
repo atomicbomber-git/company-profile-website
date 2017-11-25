@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Photo;
+use Storage;
 
 class PhotoController extends Controller
 {
@@ -63,9 +64,9 @@ class PhotoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Photo $photo)
     {
-        //
+        return view("photo.edit", ["photo" => $photo]);
     }
 
     /**
@@ -75,9 +76,21 @@ class PhotoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Photo $photo)
     {
-        //
+        $data = request()->validate([
+            "name" => "required|string|min:6",
+            "image" => "sometimes|file|mimes:jpg,jpeg,png"
+        ]);
+
+        if (request()->file("image")) {
+            Storage::delete($photo->image);
+            $data["image"] = request()->file("image")->store("photos");
+        }
+
+        $photo->update($data);
+
+        return redirect()->back();
     }
 
     /**
