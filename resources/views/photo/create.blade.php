@@ -95,7 +95,8 @@
                         'type': 'warning',
                         'animation': 'true',
                         'showCancelButton': true,
-                        'confirmButtonText': 'Ya'
+                        'confirmButtonText': 'Ya',
+                        'cancelButtonText': 'Tidak'
                     }).then(function(result) {
                         if (result.value) {
                             form.submit();
