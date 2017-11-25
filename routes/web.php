@@ -11,7 +11,7 @@
 |
 */
 
-Route::view("/", "welcome");
+Route::get("/", "HomeController@welcome")->name("welcome");
 
 Auth::routes();
 
@@ -32,6 +32,13 @@ Route::prefix("/admin")->middleware("auth")->group(function() {
         Route::get("/edit/{photo}", "PhotoController@edit")->name("photo.edit");
         Route::patch("/edit/{photo}", "PhotoController@update")->name("photo.update");
     });
+
+    Route::prefix("/slide")->group(function() {
+        Route::get("/create", "SlideController@create")->name("slide.create");
+        Route::post("/store", "SlideController@store")->name("slide.store");
+        Route::delete("/destroy/{slide}", "SlideController@destroy")->name("slide.destroy");
+    });
 });
 
-Route::get("/{photo}", "PhotoController@show")->name("photo.show");
+Route::get("/photo/{photo}", "PhotoController@show")->name("photo.show");
+Route::get("/slide/{slide}", "SlideController@show")->name("slide.show");

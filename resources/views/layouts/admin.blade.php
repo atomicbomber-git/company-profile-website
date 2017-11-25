@@ -3,7 +3,7 @@
 @section("title", "Administrator")
 
 @section("main-content")
-    @include("shared.navbar-base")
+    @include("shared.navbar-admin")
 
     <div style="height: 40px"></div>
 
@@ -13,6 +13,7 @@
             <div class="col-md-3">
                 <div class="list-group">
                     <a class="list-group-item list-group-item-action" href="#"> <i class="fa fa-home"></i> Halaman Depan </a>
+                    <a class="list-group-item list-group-item-action" href="{{ route("slide.create") }}"> <i class="fa fa-image"></i> Slide </a>
                     <a class="list-group-item list-group-item-action" href="#"> <i class="fa fa-list"></i> Teks Promosi </a>
                     <a class="list-group-item list-group-item-action" href="#"> <i class="fa fa-phone"></i> Kontak </a>
                     <a class="list-group-item list-group-item-action" href="{{ route("photo.create") }}"> <i class="fa fa-image"></i> Galeri </a>

@@ -1,5 +1,9 @@
 @extends("shared.navbar-base")
 
+@section("navbar-brand-url")
+  {{ route("welcome") }}
+@endsection
+
 @section("navbar-menus")
   <ul class="navbar-nav ml-auto">
     <li class="nav-item">

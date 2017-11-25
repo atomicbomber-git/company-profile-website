@@ -16,6 +16,11 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
+    public function welcome()
+    {
+        return view("welcome", ["slides" => \App\Slide::all()]);
+    }
+
     /**
      * Show the application dashboard.
      *
