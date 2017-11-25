@@ -12,11 +12,11 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="list-group">
-                    <a class="list-group-item"> <i class="fa fa-home"></i> Halaman Depan </a>
-                    <a class="list-group-item"> <i class="fa fa-list"></i> Teks Promosi </a>
-                    <a class="list-group-item"> <i class="fa fa-phone"></i> Kontak </a>
-                    <a class="list-group-item" href="{{ route("photo.create") }}"> <i class="fa fa-image"></i> Galeri </a>
-                    <a id="btn-logout" class="list-group-item"> <i class="fa fa-power-off"></i> Log Out </a>
+                    <a class="list-group-item list-group-item-action" href="#"> <i class="fa fa-home"></i> Halaman Depan </a>
+                    <a class="list-group-item list-group-item-action" href="#"> <i class="fa fa-list"></i> Teks Promosi </a>
+                    <a class="list-group-item list-group-item-action" href="#"> <i class="fa fa-phone"></i> Kontak </a>
+                    <a class="list-group-item list-group-item-action" href="{{ route("photo.create") }}"> <i class="fa fa-image"></i> Galeri </a>
+                    <a id="btn-logout" class="list-group-item list-group-item-action" href="#"> <i class="fa fa-power-off"></i> Log Out </a>
                 </div>
             </div>
 
@@ -34,9 +34,11 @@
 @endsection
 
 @section("extra-scripts")
+    @parent
     <script>
         $("#btn-logout").click(function() {
             $("#logout-form").submit();
         });
     </script>
+
 @endsection

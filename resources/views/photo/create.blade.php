@@ -79,7 +79,9 @@
     </div>
 @endsection
 
-@section("extra-scripts")
+@section("extra-scripts")    
+    @parent
+
     <script src="{{ asset("js/sweetalert2.all.js") }}"></script>
 
     <script>
