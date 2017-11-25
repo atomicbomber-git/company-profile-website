@@ -19,7 +19,7 @@
                             <div>
                                 <div style="font-weight: bold"> {{ $photo->name }} </div>
                                 <div class="text-muted">
-                                    {{ $photo->created_at }}
+                                    {{ $photo->formattedDate() }}
                                 </div>
                             </div>
                         </div>
