@@ -38,4 +38,26 @@ class SlideController extends Controller
         $slide->delete();
         return redirect()->back();
     }
+
+    public function edit(Slide $slide)
+    {
+        return view("slide.edit", ["slide" => $slide]);
+    }
+
+    public function update(Slide $slide)
+    {
+        $data = request()->validate([
+            "caption" => "required|string|min:6",
+            "description" => "required|string|min:6",
+            "image" => "sometimes|file|mimes:jpg,jpeg,png"
+        ]);
+
+        if (request()->file("image")) {
+            Storage::delete($slide->image);
+            $data["image"] = request()->file("image")->store("slides");
+        }
+
+        $slide->update($data);
+        return redirect()->back();
+    }
 }

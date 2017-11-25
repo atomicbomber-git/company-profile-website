@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Photo;
+use App\Slide;
 
 class HomeController extends Controller
 {
@@ -16,9 +18,13 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
+
+
     public function welcome()
     {
-        return view("welcome", ["slides" => \App\Slide::all()]);
+        $latest_photos = Photo::orderBy("created_at", "desc")->limit(3)->get();
+
+        return view("welcome", ["slides" => Slide::all(), "photos" => $latest_photos]);
     }
 
     /**

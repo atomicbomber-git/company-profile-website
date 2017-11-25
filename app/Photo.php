@@ -13,6 +13,10 @@ class Photo extends Model
         return new Date($date);
     }
 
+    public function getThumbnailAttribute() {
+        return config("files.thumbnail.location") . "/" . $this->image;
+    }
+
     public function formattedDate()
     {
         return $this->created_at->format("j F Y");

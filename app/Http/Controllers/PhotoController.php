@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Photo;
 use Storage;
+use Image;
 
 class PhotoController extends Controller
 {
@@ -31,10 +32,21 @@ class PhotoController extends Controller
             "image" => "required|file|mimes:jpg,jpeg,png"
         ]);
 
-        $data["image"] = request()->file("image")->store("photos");
+        $data["image"] = $this->storeImage( request()->file("image") );
+        
         Photo::create($data);
 
         return redirect()->back();
+    }
+
+    private function storeImage($image) {
+        $filename = $image->store(config("files.location.photo"));
+
+        /* Creates a thumbnail from image and stores it */
+        $thumbnail = Image::make($image)->resize(config("files.thumbnail.width"), config("files.thumbnail.height"))->encode();
+        Storage::put(config("files.thumbnail.location") . "/" . $filename, (string) $thumbnail);
+
+        return $filename;
     }
 
     /**
@@ -46,6 +58,11 @@ class PhotoController extends Controller
     public function show(Photo $photo)
     {
         return response()->file(storage_path("app/$photo->image"));
+    }
+
+    public function thumbnail(Photo $photo)
+    {
+        return response()->file(storage_path("app/$photo->thumbnail"));
     }
 
     /**
@@ -75,7 +92,8 @@ class PhotoController extends Controller
 
         if (request()->file("image")) {
             Storage::delete($photo->image);
-            $data["image"] = request()->file("image")->store("photos");
+            Storage::delete($photo->thumbnail);
+            $data["image"] = $this->storeImage(request()->file("image"));
         }
 
         $photo->update($data);
@@ -91,7 +109,8 @@ class PhotoController extends Controller
      */
     public function destroy(Photo $photo)
     {
-        \Storage::delete($photo->image);
+        Storage::delete($photo->image);
+        Storage::delete($photo->thumbnail);
         $photo->delete();
 
         return redirect()->back();

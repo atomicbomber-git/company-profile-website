@@ -67,7 +67,7 @@
                                 <div> {{ $slide->description }} </div>
                             </div>
                             <div class="col-md-4 text-right">
-                                <button class="btn btn-sm btn-success"> <i class="fa fa-pencil"></i> </button>
+                                <a class="btn btn-sm btn-success" href="{{ route("slide.edit", $slide) }}"> <i class="fa fa-pencil"></i> </a>
                                 <form method="POST" action="{{ route("slide.destroy", $slide) }}" class="d-inline-block form-delete">
                                     <button class="btn btn-sm btn-danger"> <i class="fa fa-trash"></i> </button>
                                     {{ method_field("DELETE") }}
