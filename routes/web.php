@@ -28,8 +28,8 @@ Route::prefix("/admin")->middleware("auth")->group(function() {
     Route::prefix("/photo")->group(function() {
         Route::get("/create", "PhotoController@create")->name("photo.create");
         Route::post("/store", "PhotoController@store")->name("photo.store");
-        Route::get("/{photo}", "PhotoController@show")->name("photo.show");
         Route::delete("/{photo}/destroy", "PhotoController@destroy")->name("photo.destroy");
     });
-
 });
+
+Route::get("/{photo}", "PhotoController@show")->name("photo.show");
