@@ -18,15 +18,6 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-
-
-    public function welcome()
-    {
-        $latest_photos = Photo::orderBy("created_at", "desc")->limit(3)->get();
-
-        return view("welcome", ["slides" => Slide::all(), "photos" => $latest_photos]);
-    }
-
     /**
      * Show the application dashboard.
      *

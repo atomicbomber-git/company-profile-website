@@ -40,6 +40,12 @@ Route::prefix("/admin")->middleware("auth")->group(function() {
         Route::get("/edit/{slide}", "SlideController@edit")->name("slide.edit");
         Route::patch("/edit/{slide}", "SlideController@update")->name("slide.update");
     });
+
+    Route::prefix("/promotion")->group(function() {
+        Route::get("/", "PromotionController@index")->name("promotion.index");
+        Route::get("/edit/{promotional_text}", "PromotionController@edit")->name("promotion.edit");
+        Route::patch("/edit/{promotional_text}", "PromotionController@update")->name("promotion.update");
+    });
 });
 
 Route::get("/photo/{photo}", "PhotoController@show")->name("photo.show");
