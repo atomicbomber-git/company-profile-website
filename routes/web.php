@@ -11,12 +11,12 @@
 |
 */
 
-Route::get("/", "HomeController@welcome")->name("welcome");
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get("/", "MainController@welcome")->name("welcome");
 Route::get("/gallery", "MainController@gallery")->name("gallery");
 
 Route::get("/admin/login", "Auth\LoginController@showLoginForm")->name("login");

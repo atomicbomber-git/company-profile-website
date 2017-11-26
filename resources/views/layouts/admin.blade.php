@@ -11,13 +11,30 @@
 
         <div class="row">
             <div class="col-md-3">
-                <div class="list-group">
-                    <a class="list-group-item list-group-item-action" href="#"> <i class="fa fa-home"></i> Halaman Depan </a>
-                    <a class="list-group-item list-group-item-action" href="{{ route("slide.create") }}"> <i class="fa fa-image"></i> Slide </a>
-                    <a class="list-group-item list-group-item-action" href="#"> <i class="fa fa-list"></i> Teks Promosi </a>
-                    <a class="list-group-item list-group-item-action" href="#"> <i class="fa fa-phone"></i> Kontak </a>
-                    <a class="list-group-item list-group-item-action" href="{{ route("photo.create") }}"> <i class="fa fa-image"></i> Galeri </a>
-                    <a id="btn-logout" class="list-group-item list-group-item-action" href="#"> <i class="fa fa-power-off"></i> Log Out </a>
+                <div class="list-group" style="margin-bottom: 20px">
+                    <a class="list-group-item list-group-item-action" href="#">
+                        <i class="fa fa-home fa-fw"></i>
+                        Halaman Depan
+                    </a>
+                    <a class="list-group-item list-group-item-action" href="{{ route("slide.create") }}">
+                        <i class="fa fa-image fa-fw"></i>
+                        Slide
+                    </a>
+                    <a class="list-group-item list-group-item-action" href="{{ route("promotion.index") }}">
+                        <i class="fa fa-list fa-fw"></i>
+                        Teks Promosi
+                    </a>
+                    <a class="list-group-item list-group-item-action" href="#">
+                        <i class="fa fa-phone fa-fw"></i>
+                        Kontak
+                    </a>
+                    <a class="list-group-item list-group-item-action" href="{{ route("photo.create") }}">
+                        <i class="fa fa-image fa-fw"></i> Galeri
+                    </a>
+                    <a id="btn-logout" class="list-group-item list-group-item-action" href="#">
+                        <i class="fa fa-power-off fa-fw"></i>
+                        Log Out
+                    </a>
                 </div>
             </div>
 
