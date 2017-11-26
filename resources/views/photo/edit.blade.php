@@ -10,6 +10,12 @@
         </div>
 
         <div class="card-body">
+            @if (session("message-success-update"))
+                <div class="alert alert-success">
+                    {{ session("message-success-update") }}
+                </div>
+            @endif
+
             <form method="POST" action="{{ route("photo.update", $photo) }}" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="name"> Nama Foto: </label>

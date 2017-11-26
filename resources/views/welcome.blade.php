@@ -176,7 +176,6 @@
         </div>
       </div>
       <!-- /.row -->
-
       <hr>
 
       <!-- Call to Action Section -->

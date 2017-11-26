@@ -51,10 +51,23 @@
         </div>
         <div class="card-body">
             <div class="container">
+
+                @if (session("message-success-delete"))
+                    <div class="alert alert-success">
+                        {{ session("message-success-delete") }}
+                    </div>
+                @endif
+
+                @if (session("message-success-create"))
+                    <div class="alert alert-success">
+                        {{ session("message-success-create") }}
+                    </div>
+                @endif
+                
                 <div class="row">
                     @foreach ($photos as $photo)
                         <div class="col-sm-4" style="margin-bottom: 20px">
-                            <div class="card">
+                            <div class="card h-100">
                                 <img style="height: 160px; width: auto;" class="card-img-top" src="{{ route("photo.show", $photo) }}">
                                 <div class="card-body">
                                     <p>

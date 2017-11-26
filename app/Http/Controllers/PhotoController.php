@@ -36,7 +36,7 @@ class PhotoController extends Controller
         
         Photo::create($data);
 
-        return redirect()->back();
+        return redirect()->back()->with("message-success-create", "Penambahan foto berhasil dilakukan.");
     }
 
     private function storeImage($image) {
@@ -98,7 +98,7 @@ class PhotoController extends Controller
 
         $photo->update($data);
 
-        return redirect()->back();
+        return redirect()->back()->with("message-success-update", "Pengubahan foto berhasil dilakukan.");
     }
 
     /**
@@ -113,6 +113,6 @@ class PhotoController extends Controller
         Storage::delete($photo->thumbnail);
         $photo->delete();
 
-        return redirect()->back();
+        return redirect()->back()->with("message-success-delete", "Penghapusan berhasil dilakukan.");
     }
 }
