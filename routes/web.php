@@ -46,6 +46,11 @@ Route::prefix("/admin")->middleware("auth")->group(function() {
         Route::get("/edit/{promotional_text}", "PromotionController@edit")->name("promotion.edit");
         Route::patch("/edit/{promotional_text}", "PromotionController@update")->name("promotion.update");
     });
+
+    Route::prefix("/about")->group(function() {
+        Route::get("/edit", "AboutController@edit")->name("about.edit");
+        Route::patch("/update_welcome/{welcome_text}", "AboutController@updateWelcome")->name("about.update_welcome");
+    });
 });
 
 Route::get("/photo/{photo}", "PhotoController@show")->name("photo.show");

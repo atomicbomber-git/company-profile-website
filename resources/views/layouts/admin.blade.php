@@ -24,6 +24,10 @@
                         <i class="fa fa-list fa-fw"></i>
                         Teks Promosi
                     </a>
+                    <a class="list-group-item list-group-item-action" href="{{ route("about.edit") }}">
+                        <i class="fa fa-building fa-fw"></i>
+                        Mengenai Perusahaan
+                    </a>
                     <a class="list-group-item list-group-item-action" href="#">
                         <i class="fa fa-phone fa-fw"></i>
                         Kontak

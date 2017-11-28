@@ -39,10 +39,10 @@
     <div class="container">
         
         <div style="margin: 80px 0px 80px 0px">
-            <h1 class="my-2"> Selamat Datang di Perusahaan Kami </h1>
+            <h1 class="my-2"> {{ $welcome_text->caption }} </h1>
 
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis, explicabo, aperiam? Sit pariatur eligendi adipisci ullam, voluptates magni ipsum? Excepturi sapiente eveniet soluta laboriosam quos repellendus vel voluptatum nisi consequuntur!
+              {{ $welcome_text->description }}
             </p>
         </div>
 
