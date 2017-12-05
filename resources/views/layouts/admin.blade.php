@@ -28,7 +28,7 @@
                         <i class="fa fa-building fa-fw"></i>
                         Mengenai Perusahaan
                     </a>
-                    <a class="list-group-item list-group-item-action" href="#">
+                    <a class="list-group-item list-group-item-action" href="{{ route("contact.edit") }}">
                         <i class="fa fa-phone fa-fw"></i>
                         Kontak
                     </a>

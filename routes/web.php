@@ -41,6 +41,12 @@ Route::prefix("/admin")->middleware("auth")->group(function() {
         Route::patch("/edit/{slide}", "SlideController@update")->name("slide.update");
     });
 
+    Route::prefix("contact")->group(function() {
+        Route::get("/edit", "ContactController@edit")->name("contact.edit");
+        Route::patch("/update/phone", "ContactController@updatePhone")->name("contact.update.phone");
+        Route::patch("/update/email", "ContactController@updateEmail")->name("contact.update.email");
+    });
+
     Route::prefix("/promotion")->group(function() {
         Route::get("/", "PromotionController@index")->name("promotion.index");
         Route::get("/edit/{promotional_text}", "PromotionController@edit")->name("promotion.edit");

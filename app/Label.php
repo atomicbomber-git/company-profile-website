@@ -12,7 +12,9 @@ class Label extends Model
         "promotional_1",
         "promotional_2",
         "promotional_3",
-        "welcome"
+        "welcome",
+        "phone",
+        "email"
     ];
 
     public static function fetchByTagname($tagname)
