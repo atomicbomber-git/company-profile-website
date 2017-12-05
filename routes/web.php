@@ -24,7 +24,8 @@ Route::post("/admin/login", "Auth\LoginController@login");
 Route::post("/admin/logout", "Auth\LoginController@logout")->name("logout");
 
 Route::prefix("/admin")->middleware("auth")->group(function() {
-    Route::get("/", "AdminController@index")->name("admin");
+    Route::redirect("/", "adminss/slide/create");
+
     Route::prefix("/photo")->group(function() {
         Route::get("/create", "PhotoController@create")->name("photo.create");
         Route::post("/store", "PhotoController@store")->name("photo.store");
