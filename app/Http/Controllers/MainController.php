@@ -17,8 +17,8 @@ class MainController extends Controller
         $promotional_texts[] = Label::fetchByTagname("promotional_3");
 
         return view("welcome", [
-            "slides" => Photo::orderBy("created_at", "desc")->limit(3)->get(),
-            "photos" => $latest_photos,
+            "slides" => Slide::all(),
+            "photos" => Photo::orderBy("created_at", "desc")->limit(3)->get(),
             "promotional_texts" => $promotional_texts,
             "welcome_text" => Label::fetchByTagname("welcome"),
             "phone" => Label::fetchByTagname("phone")->caption,
