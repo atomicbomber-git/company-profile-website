@@ -9,11 +9,10 @@ class PromotionController extends Controller
 {
     public function index()
     {
-        $promotional_texts = Label::whereIn("id", [
-            config("labels.id.promotional.first"),
-            config("labels.id.promotional.second"),
-            config("labels.id.promotional.third")
-        ])->get();
+        $promotional_texts = [];
+        $promotional_texts[] = Label::fetchByTagname("promotional_1");
+        $promotional_texts[] = Label::fetchByTagname("promotional_2");
+        $promotional_texts[] = Label::fetchByTagname("promotional_3");
 
         return view("promotion.index", ["promotional_texts" => $promotional_texts]);
     }

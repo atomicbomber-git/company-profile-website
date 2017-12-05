@@ -14,10 +14,10 @@ class MainController extends Controller
         $latest_photos = Photo::orderBy("created_at", "desc")->limit(3)->get();
 
         $promotional_texts = [];
-        $promotional_texts[] = Label::find(config("labels.id.promotional.first"));
-        $promotional_texts[] = Label::find(config("labels.id.promotional.second"));
-        $promotional_texts[] = Label::find(config("labels.id.promotional.third"));
-        $welcome_text = Label::find(config("labels.id.welcome"));
+        $promotional_texts[] = Label::fetchByTagname("promotional_1");
+        $promotional_texts[] = Label::fetchByTagname("promotional_2");
+        $promotional_texts[] = Label::fetchByTagname("promotional_3");
+        $welcome_text = Label::fetchByTagname("promotional_1");;
 
         return view("welcome", [
             "slides" => Slide::all(),
