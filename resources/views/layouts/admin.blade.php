@@ -12,10 +12,6 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="list-group" style="margin-bottom: 20px">
-                    <a class="list-group-item list-group-item-action" href="#">
-                        <i class="fa fa-home fa-fw"></i>
-                        Halaman Depan
-                    </a>
                     <a class="list-group-item list-group-item-action" href="{{ route("slide.create") }}">
                         <i class="fa fa-image fa-fw"></i>
                         Slide
