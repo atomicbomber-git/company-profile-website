@@ -17,13 +17,17 @@ class MainController extends Controller
         $promotional_texts[] = Label::fetchByTagname("promotional_1");
         $promotional_texts[] = Label::fetchByTagname("promotional_2");
         $promotional_texts[] = Label::fetchByTagname("promotional_3");
-        $welcome_text = Label::fetchByTagname("promotional_1");;
+        $welcome_text = Label::fetchByTagname("promotional_1");
+        $phone = Label::fetchByTagname("phone")->caption;
+        $email = Label::fetchByTagname("email")->caption;
 
         return view("welcome", [
             "slides" => Slide::all(),
             "photos" => $latest_photos,
             "promotional_texts" => $promotional_texts,
-            "welcome_text" => $welcome_text
+            "welcome_text" => $welcome_text,
+            "phone" => $phone,
+            "email" => $email
         ]);
     }
 
