@@ -42,6 +42,14 @@ Route::prefix("/admin")->middleware("auth")->group(function() {
         Route::patch("/edit/{slide}", "SlideController@update")->name("slide.update");
     });
 
+    Route::prefix("/member")->group(function() {
+        Route::get("/create", "MemberController@create")->name("member.create");
+        Route::post("/store", "MemberController@store")->name("member.store");
+        Route::delete("/destroy/{member}", "MemberController@destroy")->name("member.destroy");
+        Route::get("/edit/{member}", "MemberController@edit")->name("member.edit");
+        Route::patch("/edit/{member}", "MemberController@update")->name("member.update");
+    });
+
     Route::prefix("contact")->group(function() {
         Route::get("/edit", "ContactController@edit")->name("contact.edit");
         Route::patch("/update/phone", "ContactController@updatePhone")->name("contact.update.phone");
@@ -63,3 +71,4 @@ Route::prefix("/admin")->middleware("auth")->group(function() {
 Route::get("/photo/{photo}", "PhotoController@show")->name("photo.show");
 Route::get("/photo/thumbnail/{photo}", "PhotoController@thumbnail")->name("photo.thumbnail");
 Route::get("/slide/{slide}", "SlideController@show")->name("slide.show");
+Route::get("/member/{member}", "MemberController@show")->name("member.show");
