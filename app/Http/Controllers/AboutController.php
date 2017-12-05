@@ -9,7 +9,7 @@ class AboutController extends Controller
 {
     public function edit()
     {
-        $welcome_text = Label::find(config("labels.id.welcome"));
+        $welcome_text = Label::fetchByTagname("welcome");
 
         return view("about.edit", [
             "welcome_text" => $welcome_text

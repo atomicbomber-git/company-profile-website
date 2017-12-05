@@ -17,7 +17,7 @@ class MainController extends Controller
         $promotional_texts[] = Label::fetchByTagname("promotional_1");
         $promotional_texts[] = Label::fetchByTagname("promotional_2");
         $promotional_texts[] = Label::fetchByTagname("promotional_3");
-        $welcome_text = Label::fetchByTagname("promotional_1");
+        $welcome_text = Label::fetchByTagname("welcome");
         $phone = Label::fetchByTagname("phone")->caption;
         $email = Label::fetchByTagname("email")->caption;
 
