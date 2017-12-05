@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Photo;
 use App\Slide;
 use App\Label;
+use App\Member;
 
 class MainController extends Controller
 {
@@ -19,6 +20,7 @@ class MainController extends Controller
         return view("welcome", [
             "slides" => Slide::all(),
             "photos" => Photo::orderBy("created_at", "desc")->limit(3)->get(),
+            "members" => Member::orderBy("created_at", "desc")->limit(3)->get(),
             "promotional_texts" => $promotional_texts,
             "welcome_text" => Label::fetchByTagname("welcome"),
             "phone" => Label::fetchByTagname("phone")->caption,

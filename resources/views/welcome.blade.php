@@ -86,17 +86,47 @@
       <hr>
 </div>
 
-    <h2> Galeri </h2>
+    <h2 style="margin-bottom: 20px">
+      <i class="fa fa-photo"></i>
+      Galeri
+    </h2>
+
+
     <div class="row">
 
       @foreach ($photos as $photo)
         <div class="col-lg-4 col-sm-6 portfolio-item">
           <div class="card">
-            <a href="{{ route("photo.show", $photo) }}"><img class="card-img-top" src="{{ route("photo.thumbnail", $photo) }}" alt="{{ $photo->name }}"></a>
+            <a href="{{ route("photo.thumbnail", $photo) }}"><img class="card-img-top" src="{{ route("photo.thumbnail", $photo) }}" alt="{{ $photo->name }}"></a>
             <div class="card-body">
               <h4 class="card-title">
                 {{ $photo->name }}
               </h4>
+            </div>
+          </div>
+        </div>
+      @endforeach
+    </div>
+
+    <hr/>
+
+    <h2 style="margin-bottom: 20px">
+      <i class="fa fa-users"></i>
+      Anggota Tim
+    </h2>
+    <div class="row">
+
+      @foreach ($members as $member)
+        <div class="col-lg-4 col-sm-6 portfolio-item">
+          <div class="card">
+            <a href="{{ route("member.thumbnail", $member) }}"><img class="card-img-top" src="{{ route("member.thumbnail", $member) }}" alt="{{ $member->name }}"></a>
+            <div class="card-body">
+              <dl>
+                  <dt> Nama: </dt>
+                  <dd> {{ $member->name }} </dd>
+                  <dt> Posisi: </dt>
+                  <dd> {{ $member->position }} </dd>
+              </dl>
             </div>
           </div>
         </div>
