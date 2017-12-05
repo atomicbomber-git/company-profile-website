@@ -20,6 +20,10 @@
                         <i class="fa fa-image fa-fw"></i>
                         Slide
                     </a>
+                    <a class="list-group-item list-group-item-action" href="{{ route("member.create") }}">
+                        <i class="fa fa-users fa-fw"></i>
+                        Anggota Tim
+                    </a>
                     <a class="list-group-item list-group-item-action" href="{{ route("promotion.index") }}">
                         <i class="fa fa-list fa-fw"></i>
                         Teks Promosi

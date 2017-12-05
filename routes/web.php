@@ -72,3 +72,4 @@ Route::get("/photo/{photo}", "PhotoController@show")->name("photo.show");
 Route::get("/photo/thumbnail/{photo}", "PhotoController@thumbnail")->name("photo.thumbnail");
 Route::get("/slide/{slide}", "SlideController@show")->name("slide.show");
 Route::get("/member/{member}", "MemberController@show")->name("member.show");
+Route::get("/member/thumbnail/{member}", "MemberController@thumbnail")->name("member.thumbnail");

@@ -4,7 +4,8 @@ return [
     /* Directory names of respective group of files */
     "location" => [
         "photo" => "photos",
-        "slide" => "slides"
+        "slide" => "slides",
+        "member" => "members",
     ],
 
     "thumbnail" => [

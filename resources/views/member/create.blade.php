@@ -1,6 +1,6 @@
 @extends("layouts.admin")
 
-@section("title", "Kelola Galeri")
+@section("title", "Kelola Anggota Tim")
 
 @section("extra-links")
     <link rel="stylesheet" href="{{ asset("css/sweetalert2.min.css") }}">
@@ -10,16 +10,31 @@
     <div class="card" style="max-width: 400px; margin-bottom: 20px">
         <div class="card-header">
             <i class="fa fa-plus"></i>
-            Tambah Foto ke Galeri
+            Tambah Anggota Tim
         </div>
 
         <div class="card-body">
-            <form method="POST" action="{{ route("photo.store") }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route("member.store") }}" enctype="multipart/form-data">
+
+                @if(session("message-success-store"))
+                    <div class="alert alert-success">
+                        {{ session("message-success-store") }}
+                    </div>
+                @endif
+
                 <div class="form-group">
-                    <label for="name"> Nama Foto: </label>
+                    <label for="name"> Nama Anggota: </label>
                     <input value="{{ old("name") }}" class="form-control {{ !$errors->has("name") ?: "is-invalid" }}" type="text" id="name" name="name">
                     <span class="invalid-feedback">
                         {{ $errors->first("name") }}
+                    </span>
+                </div>
+
+                <div class="form-group">
+                    <label for="name"> Posisi: </label>
+                    <input value="{{ old("position") }}" class="form-control {{ !$errors->has("position") ?: "is-invalid" }}" type="text" id="position" name="position">
+                    <span class="invalid-feedback">
+                        {{ $errors->first("position") }}
                     </span>
                 </div>
 
@@ -46,42 +61,38 @@
 
     <div class="card">
         <div class="card-header">
-            <i class="fa fa-image"></i>
-            Galeri
+            <i class="fa fa-users"></i>
+            Anggota
         </div>
         <div class="card-body">
             <div class="container">
 
-                @if (session("message-success-delete"))
+                @if (session("message-success-destroy"))
                     <div class="alert alert-success">
-                        {{ session("message-success-delete") }}
-                    </div>
-                @endif
-
-                @if (session("message-success-create"))
-                    <div class="alert alert-success">
-                        {{ session("message-success-create") }}
+                        {{ session("message-success-destroy") }}
                     </div>
                 @endif
                 
                 <div class="row">
-                    @foreach ($photos as $photo)
+                    @foreach ($members as $member)
                         <div class="col-sm-4" style="margin-bottom: 20px">
                             <div class="card h-100">
-                                <img style="height: 160px; width: auto;" class="card-img-top" src="{{ route("photo.thumbnail", $photo) }}">
+                                <img style="height: 160px; width: auto;" class="card-img-top" src="{{ route("member.thumbnail", $member) }}">
                                 <div class="card-body">
                                     <p>
                                         <div>
-                                            <div style="font-weight: bold"> {{ $photo->name }} </div>
-                                            <div class="text-muted">
-                                                {{ $photo->formattedDate() }}
-                                            </div>
+                                            <dl>
+                                                <dt> Nama: </dt>
+                                                <dd> {{ $member->name }} </dd>
+                                                <dt> Posisi: </dt>
+                                                <dd> {{ $member->position }} </dd>
+                                            </dl>
                                         </div>
                                     </p>
                                     <div style="text-align: right">
-                                        <a href="{{ route("photo.edit", $photo) }}" class="btn btn-success btn-sm"> <i class="fa fa-pencil"></i> </a>
+                                        <a href="{{ route("member.edit", $member) }}" class="btn btn-success btn-sm"> <i class="fa fa-pencil"></i> </a>
 
-                                        <form style="display: inline-block;" class="form-delete" method="POST" action="{{ route("photo.destroy", $photo) }}">
+                                        <form style="display: inline-block;" class="form-delete" method="POST" action="{{ route("member.destroy", $member) }}">
                                             <button class="btn btn-danger btn-sm"> <i class="fa fa-trash"></i> </button>
                                             {{ csrf_field() }}
                                             {{ method_field("DELETE") }}
