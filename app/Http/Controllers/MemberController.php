@@ -9,6 +9,11 @@ use Storage;
 
 class MemberController extends Controller
 {
+    public function index()
+    {
+        return view("member.index", ["members" => Member::all()]);
+    }
+
     public function create()
     {
         return view("member.create", ["members" => Member::all()]);
@@ -40,12 +45,26 @@ class MemberController extends Controller
 
     public function edit(Member $member)
     {
-
+        return view("member.edit", ["member" => $member]);
     }
 
     public function update(Member $member)
     {
+        $data = request()->validate([
+            "name" => "required|string|min:6",
+            "position" => "required|string",
+            "image" => "sometimes|file|mimes:jpg,jpeg,png"
+        ]);
 
+        if (request()->file("image")) {
+            Storage::delete($member->image);
+            Storage::delete($member->thumbnail);
+            $data["image"] = $this->storeImage(request()->file("image"));
+        }
+
+        $member->update($data);
+
+        return redirect()->back()->with("message-success-update", "Pengubahan data anggota tim berhasil dilakukan.");
     }
 
     public function destroy(Member $member)

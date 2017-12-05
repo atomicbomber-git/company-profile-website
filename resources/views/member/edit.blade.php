@@ -1,12 +1,12 @@
 @extends("layouts.admin")
 
-@section("title", "Edit Foto Galeri")
+@section("title", "Edit Anggota Tim")
 
 @section("sub-content")
     <div class="card" style="max-width: 550px; margin-bottom: 20px">
         <div class="card-header">
             <i class="fa fa-pencil"></i>
-            Edit Foto Galeri
+            Edit Anggota Tim
         </div>
 
         <div class="card-body">
@@ -16,18 +16,24 @@
                 </div>
             @endif
 
-            <form method="POST" action="{{ route("photo.update", $photo) }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route("member.update", $member) }}" enctype="multipart/form-data">
                 <div class="form-group">
-                    <label for="name"> Nama Foto: </label>
-                    <input type="text" class="form-control" id="name" name="name" value="{{ old("name", $photo->name) }}">
+                    <label for="name"> Nama: </label>
+                    <input type="text" class="form-control" id="name" name="name" value="{{ old("name", $member->name) }}">
                     <span class="invalid-feedback"></span>
                 </div>
 
                 <div class="form-group">
-                    <label for=""> Foto Sekarang: </label>
+                    <label for="name"> Posisi: </label>
+                    <input type="text" class="form-control" id="name" name="position" value="{{ old("position", $member->position) }}">
+                    <span class="invalid-feedback"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for=""> Foto: </label>
                     <img
                         style="width: 500px; height: auto"
-                        src="{{ route("photo.show", $photo) }}" alt="Gambar `{{ $photo->name }}`"
+                        src="{{ route("member.thumbnail", $member) }}" alt="Gambar `{{ $member->name }}`"
                         >
                 </div>
 

@@ -7,7 +7,7 @@
 @section("navbar-menus")
   <ul class="navbar-nav ml-auto">
     <li class="nav-item">
-      <a class="nav-link" href="#">
+      <a class="nav-link" href="{{ route("member.index") }}">
         <i class="fa fa-users"></i>
         Anggota Tim
       </a>
