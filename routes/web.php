@@ -66,6 +66,11 @@ Route::prefix("/admin")->middleware("auth")->group(function() {
         Route::get("/edit", "AboutController@edit")->name("about.edit");
         Route::patch("/update_welcome/{welcome_text}", "AboutController@updateWelcome")->name("about.update_welcome");
     });
+
+    Route::prefix("/photo-category")->group(function() {
+        Route::get("/index", "PhotoCategoryController@index")->name("photo-category.index");
+        Route::post("/store", "PhotoCategoryController@store")->name("photo-category.store");
+    });
 });
 
 Route::get("/photo/{photo}", "PhotoController@show")->name("photo.show");

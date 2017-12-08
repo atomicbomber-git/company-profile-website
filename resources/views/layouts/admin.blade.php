@@ -32,8 +32,13 @@
                         <i class="fa fa-phone fa-fw"></i>
                         Kontak
                     </a>
+                    <a class="list-group-item list-group-item-action" href="{{ route("photo-category.index") }}">
+                        <i class="fa fa-list fa-fw"></i>
+                        Kategori Foto
+                    </a>
                     <a class="list-group-item list-group-item-action" href="{{ route("photo.create") }}">
-                        <i class="fa fa-image fa-fw"></i> Galeri
+                        <i class="fa fa-image fa-fw"></i> 
+                        Galeri Foto
                     </a>
                     <a id="btn-logout" class="list-group-item list-group-item-action" href="#">
                         <i class="fa fa-power-off fa-fw"></i>
