@@ -7,13 +7,6 @@
 @endsection
 
 @section("sub-content")
-    <div style="height: 20px"></div>
-    <h2>
-        <i class="fa fa-photo"></i>
-        Kelola Foto
-    </h2>
-    <hr style="margin-top: 4px">
-
     <div class="card" style="max-width: 400px; margin-bottom: 20px">
         <div class="card-header">
             <i class="fa fa-plus"></i>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Photo;
+use App\PhotoCategory;
 use App\Slide;
 use App\Label;
 use App\Member;
@@ -30,6 +31,19 @@ class MainController extends Controller
 
     public function gallery()
     {
-        return view("gallery", ["photos" => Photo::all()]);
+        $category_id = request()->query("category");
+
+        $photos = Photo::when(
+            $category_id,
+            function($query) use($category_id) {
+                $query->where("category_id", $category_id);
+            }
+        )->get();
+
+        return view("gallery", [
+            "photos" => $photos,
+            "categories" => PhotoCategory::all(),
+            "current_category" => PhotoCategory::find($category_id)
+        ]);
     }
 }
