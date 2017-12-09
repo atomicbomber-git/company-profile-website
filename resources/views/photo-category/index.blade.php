@@ -45,6 +45,13 @@
             Kelola Kategori Foto
         </div>
         <div class="card-body">
+            
+            @if (session("photo-category-delete-success"))
+                <div class="alert alert-success">
+                    {{ session("photo-category-delete-success") }}
+                </div>
+            @endif
+
             <table class="table table-sm">
                 <thead>
                     <tr>
@@ -60,9 +67,13 @@
                             <button class="btn btn-dark btn-sm">
                                 <i class="fa fa-pencil"></i>
                             </button>
-                            <button class="btn btn-danger btn-sm">
-                                <i class="fa fa-trash"></i>
-                            </button>
+                            <form class="form-delete" style="display: inline-block;" method="POST" action="{{ route("photo-category.delete", $category) }}">
+                                <button class="btn btn-danger btn-sm">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                                {{ csrf_field() }}
+                                {{ method_field("DELETE") }}
+                            </form>
                         </td>
                     </tr>
                     @endforeach

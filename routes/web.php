@@ -70,6 +70,7 @@ Route::prefix("/admin")->middleware("auth")->group(function() {
     Route::prefix("/photo-category")->group(function() {
         Route::get("/index", "PhotoCategoryController@index")->name("photo-category.index");
         Route::post("/store", "PhotoCategoryController@store")->name("photo-category.store");
+        Route::delete("/delete/{category}", "PhotoCategoryController@delete")->name("photo-category.delete");
     });
 });
 

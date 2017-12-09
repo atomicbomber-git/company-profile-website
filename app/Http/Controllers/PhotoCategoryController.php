@@ -25,4 +25,11 @@ class PhotoCategoryController extends Controller
         return redirect()->back()
             ->with("photo-category-create-success", "Kategori foto berhasil ditambahkan.");
     }
+
+    public function delete(PhotoCategory $category)
+    {
+        $category->delete();
+        return redirect()->back()
+            ->with("photo-category-delete-success", "Kategori foto berhasil dihapus.");
+    }
 }
