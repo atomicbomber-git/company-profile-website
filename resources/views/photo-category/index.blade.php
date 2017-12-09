@@ -15,7 +15,9 @@
         <div class="card-body">
             <div class="container">
                 @if (session("photo-category-create-success"))
-                    {{ session("photo-category-create-success") }}
+                    <div class="alert alert-success">
+                        {{ session("photo-category-create-success") }}
+                    </div>
                 @endif
 
                 <form method="POST" action="{{ route("photo-category.store") }}">
