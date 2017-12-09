@@ -97,7 +97,7 @@
       @foreach ($photos as $photo)
         <div class="col-lg-4 col-sm-6 portfolio-item">
           <div class="card">
-            <a href="{{ route("photo.thumbnail", $photo) }}"><img class="card-img-top" src="{{ route("photo.thumbnail", $photo) }}" alt="{{ $photo->name }}"></a>
+            <a href="{{ route("photo.show", $photo) }}"><img class="card-img-top" src="{{ route("photo.thumbnail", $photo) }}" alt="{{ $photo->name }}"></a>
             <div class="card-body">
               <h4 class="card-title">
                 {{ $photo->name }}
