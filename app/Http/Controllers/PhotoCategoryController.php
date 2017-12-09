@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\PhotoCategory;
 
 class PhotoCategoryController extends Controller
@@ -31,5 +32,20 @@ class PhotoCategoryController extends Controller
         $category->delete();
         return redirect()->back()
             ->with("photo-category-delete-success", "Kategori foto berhasil dihapus.");
+    }
+
+    public function update(PhotoCategory $category)
+    {
+        $data = request()->validate([
+            "name"=> ["required", "string", "min:1", Rule::unique("photo_categories")->ignore($category->id)]
+        ]);
+
+        $category->update($data);
+
+        session()->flash("photo-category-update-success", "Kategori foto berhasil diubah");
+
+        return response()->json([
+            "status" => "success"
+        ]);
     }
 }

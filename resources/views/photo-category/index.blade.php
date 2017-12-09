@@ -52,6 +52,12 @@
                 </div>
             @endif
 
+            @if ($message = session("photo-category-update-success"))
+                <div class="alert alert-success">
+                    {{ $message }}
+                </div>
+            @endif
+
             <table class="table table-sm">
                 <thead>
                     <tr>
@@ -64,7 +70,7 @@
                     <tr>
                         <td> {{ $category->name }} </td>
                         <td>
-                            <button class="btn btn-dark btn-sm">
+                            <button class="btn btn-edit btn-dark btn-sm" data-name="{{ $category->name }}" data-url=" {{ route("photo-category.update", $category) }} ">
                                 <i class="fa fa-pencil"></i>
                             </button>
                             <form class="form-delete" style="display: inline-block;" method="POST" action="{{ route("photo-category.delete", $category) }}">
@@ -79,6 +85,37 @@
                     @endforeach
                 </tbody>
             </table>
+        </div>
+    </div>
+
+    <div class="modal fade" id="edit-category-modal" tabindex="-1" role="dialog" aria-labelledby="edit-category-modal-label" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="edit-category-modal-label"> Edit Kategori </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="form-update" method="POST">
+                    {{ csrf_field() }}
+                    {{ method_field("PATCH") }}
+
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="category-edit"> Nama Kategori </label>
+                            <input id="category-edit" name="name" type="text" class="form-control">
+                            <div id="category-edit-feedback" class="invalid-feedback">
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"> Tutup </button>
+                        <button type="submit" class="btn btn-primary"> Ubah </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 @endsection
@@ -106,6 +143,45 @@
                             form.submit();
                         }
                     });
+                });
+            });
+
+
+            var editUrl = "";
+
+            $(".btn-edit").each(function(index, button) {
+                $(button).click(function() {
+                    $("#category-edit").val( $(this).data("name") );
+                    editUrl = $(this).data("url");
+
+                    $("#edit-category-modal").modal("show");
+                });
+            });
+
+            $("form#form-update").submit(function(event) {
+
+                event.preventDefault();
+
+                var data = $("form#form-update").serialize();
+
+                $.post({
+                    url: editUrl,
+                    data: data,
+                    dataType: "json",
+                    error: function(data, status) {
+
+                        alert(JSON.stringify(status));
+
+                        if (errorMessage = data.responseJSON.errors.name) {
+                            $("input#category-edit").addClass("is-invalid");
+                            $("div#category-edit-feedback").html(
+                                errorMessage
+                            );
+                        }
+                    },
+                    success: function(data) {
+                        window.location.reload();
+                    }
                 });
             });
         });
