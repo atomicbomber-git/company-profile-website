@@ -31,6 +31,19 @@
                 </div>
 
                 <div class="form-group">
+                    <label for=""> Kategori Foto </label>
+                    <select name="category_id" id="category" class="form-control {{ !$errors->has("category") ?: "is-invalid" }}">
+                        <option value=""> --- Tidak Berkategori --- </option>
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}"> {{ $category->name }} </option>
+                        @endforeach
+                    </select>
+                    <span class="invalid-feedback">
+                        {{ $errors->first("category") }}
+                    </span>
+                </div>
+
+                <div class="form-group">
                     <label for="image"> Berkas Foto: </label>
                     <input accept=".jpeg,.jpg,.png" id="image" name="image" type="file" class="form-control-file {{ !$errors->has("image") ?: "is-invalid" }}">
 
@@ -79,14 +92,20 @@
                                 <div class="card-body">
                                     <p>
                                         <div>
-                                            <div style="font-weight: bold"> {{ $photo->name }} </div>
-                                            <div class="text-muted">
-                                                {{ $photo->formattedDate() }}
-                                            </div>
+                                            <dl>
+                                                <dt> Nama: </dt>
+                                                <dd> {{ $photo->name }} </dd>
+
+                                                <dt> Kategori: </dt>
+                                                <dd> {{ $photo->category->name }} </dd>
+
+                                                <dt> Tanggal: </dt>
+                                                <dd> {{ $photo->created_at }} </dd>
+                                            </dl>
                                         </div>
                                     </p>
                                     <div style="text-align: right">
-                                        <a href="{{ route("photo.edit", $photo) }}" class="btn btn-success btn-sm"> <i class="fa fa-pencil"></i> </a>
+                                        <a href="{{ route("photo.edit", $photo) }}" class="btn btn-dark btn-sm"> <i class="fa fa-pencil"></i> </a>
 
                                         <form style="display: inline-block;" class="form-delete" method="POST" action="{{ route("photo.destroy", $photo) }}">
                                             <button class="btn btn-danger btn-sm"> <i class="fa fa-trash"></i> </button>

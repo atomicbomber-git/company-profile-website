@@ -33,7 +33,8 @@ class PhotoController extends Controller
     {
         $data = request()->validate([
             "name" => "required|string|min:6",
-            "image" => "required|file|mimes:jpg,jpeg,png"
+            "image" => "required|file|mimes:jpg,jpeg,png",
+            "category_id" => "sometimes|integer|min:0"
         ]);
 
         $data["image"] = $this->storeImage( request()->file("image") );
@@ -77,7 +78,10 @@ class PhotoController extends Controller
      */
     public function edit(Photo $photo)
     {
-        return view("photo.edit", ["photo" => $photo]);
+        return view("photo.edit", [
+            "photo" => $photo,
+            "categories" => PhotoCategory::all()
+        ]);
     }
 
     /**
@@ -91,7 +95,8 @@ class PhotoController extends Controller
     {
         $data = request()->validate([
             "name" => "required|string|min:6",
-            "image" => "sometimes|file|mimes:jpg,jpeg,png"
+            "image" => "sometimes|file|mimes:jpg,jpeg,png",
+            "category_id" => "sometimes|integer|min:0"
         ]);
 
         if (request()->file("image")) {

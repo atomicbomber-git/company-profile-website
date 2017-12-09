@@ -24,6 +24,19 @@
                 </div>
 
                 <div class="form-group">
+                    <label for=""> Kategori Foto </label>
+                    <select name="category_id" id="category" class="form-control {{ !$errors->has("category") ?: "is-invalid" }}">
+                        <option value="" {{ $photo->category->id ?: "selected" }}> --- Tidak Berkategori --- </option>
+                        @foreach ($categories as $category)
+                            <option {{ $category->id !== $photo->category->id ?: "selected" }} value="{{ $category->id }}"> {{ $category->name }} </option>
+                        @endforeach
+                    </select>
+                    <span class="invalid-feedback">
+                        {{ $errors->first("category") }}
+                    </span>
+                </div>
+
+                <div class="form-group">
                     <label for=""> Foto Sekarang: </label>
                     <img
                         style="width: 500px; height: auto"
