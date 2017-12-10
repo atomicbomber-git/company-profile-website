@@ -7,7 +7,7 @@ use Jenssegers\Date\Date;
 
 class Photo extends Model
 {
-    protected $fillable = ["name", "image", "category_id"];
+    protected $fillable = ["name", "image", "category_id", "date"];
 
     public function getCreatedAtAttribute($date) {
         return new Date($date);
@@ -19,7 +19,8 @@ class Photo extends Model
 
     public function formattedDate()
     {
-        return $this->created_at->format("j F Y");
+        $date = new Date($this->date);
+        return $date->format("j F Y");
     }
 
     public function category()

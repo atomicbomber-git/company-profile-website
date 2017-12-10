@@ -37,6 +37,14 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="date"> Tanggal: </label>
+                    <input type="date" name="date" class="form-control {{ !$errors->has("date") ?: "is-invalid" }}" value="{{ old("date", $current_date) }}">
+                    <span class="invalid-feedback">
+                        {{ $errors->first("invalid-date") }}
+                    </span>
+                </div>
+
+                <div class="form-group">
                     <label for="image"> Berkas Foto: </label>
                     <input accept=".jpeg,.jpg,.png" id="image" name="image" type="file" class="form-control-file {{ !$errors->has("image") ?: "is-invalid" }}">
 
@@ -93,7 +101,7 @@
                                                 <dd> {{ $photo->category->name }} </dd>
 
                                                 <dt> Tanggal: </dt>
-                                                <dd> {{ $photo->created_at }} </dd>
+                                                <dd> {{ $photo->formattedDate() }} </dd>
                                             </dl>
                                         </div>
                                     </p>

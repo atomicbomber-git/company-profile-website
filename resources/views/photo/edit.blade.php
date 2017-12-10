@@ -37,6 +37,14 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="date"> Tanggal: </label>
+                    <input type="date" name="date" class="form-control {{ !$errors->has("date") ?: "is-invalid" }}" value="{{ old("date", $photo->date) }}">
+                    <span class="invalid-feedback">
+                        {{ $errors->first("invalid-date") }}
+                    </span>
+                </div>
+
+                <div class="form-group">
                     <label for=""> Foto Sekarang: </label>
                     <img
                         style="width: 500px; height: auto"

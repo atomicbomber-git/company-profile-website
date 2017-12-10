@@ -18,6 +18,7 @@ class PhotoController extends Controller
     public function create()
     {
         return view("photo.create", [
+            "current_date" => \Date::now()->format("Y-m-d"),
             "photos" => Photo::all(),
             "categories" => PhotoCategory::all()
         ]);
@@ -34,6 +35,7 @@ class PhotoController extends Controller
         $data = request()->validate([
             "name" => "required|string|min:6",
             "image" => "required|file|mimes:jpg,jpeg,png",
+            "date" => "required|date",
             "category_id" => "sometimes|integer|min:0"
         ]);
 
@@ -86,6 +88,7 @@ class PhotoController extends Controller
         $data = request()->validate([
             "name" => "required|string|min:6",
             "image" => "sometimes|file|mimes:jpg,jpeg,png",
+            "date" => "required|date",
             "category_id" => "sometimes|integer|min:0"
         ]);
 
