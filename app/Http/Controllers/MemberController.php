@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Member;
-use Image;
+use App\ImageHelper;
 use Storage;
 
 class MemberController extends Controller
@@ -27,7 +27,7 @@ class MemberController extends Controller
             "image" => "required|file|mimes:jpg,jpeg,png"
         ]);
 
-        $data["image"] = $this->storeImage( request()->file("image") );
+        $data["image"] = ImageHelper::storeImage( request()->file("image") );
         Member::create($data);
 
         return redirect()->back()->with("message-success-store", "Anggota tim berhasil ditambahkan.");
@@ -59,7 +59,7 @@ class MemberController extends Controller
         if (request()->file("image")) {
             Storage::delete($member->image);
             Storage::delete($member->thumbnail);
-            $data["image"] = $this->storeImage(request()->file("image"));
+            $data["image"] = ImageHelper::storeImage(request()->file("image"));
         }
 
         $member->update($data);

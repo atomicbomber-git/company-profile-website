@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Photo;
 use App\PhotoCategory;
+use App\ImageHelper;
 use Storage;
-use Image;
 
 class PhotoController extends Controller
 {
@@ -37,21 +37,11 @@ class PhotoController extends Controller
             "category_id" => "sometimes|integer|min:0"
         ]);
 
-        $data["image"] = $this->storeImage( request()->file("image") );
+        $data["image"] = ImageHelper::storeImage(request()->file("image"));
         
         Photo::create($data);
 
         return redirect()->back()->with("message-success-create", "Penambahan foto berhasil dilakukan.");
-    }
-
-    private function storeImage($image) {
-        $filename = $image->store(config("files.location.photo"));
-
-        /* Creates a thumbnail from image and stores it */
-        $thumbnail = Image::make($image)->resize(config("files.thumbnail.width"), config("files.thumbnail.height"))->encode();
-        Storage::put(config("files.thumbnail.location") . "/" . $filename, (string) $thumbnail);
-
-        return $filename;
     }
 
     /**
@@ -102,7 +92,7 @@ class PhotoController extends Controller
         if (request()->file("image")) {
             Storage::delete($photo->image);
             Storage::delete($photo->thumbnail);
-            $data["image"] = $this->storeImage(request()->file("image"));
+            $data["image"] = ImageHelper::storeImage(request()->file("image"));
         }
 
         $photo->update($data);
