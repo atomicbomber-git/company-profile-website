@@ -14,7 +14,7 @@
                 <div class="list-group" style="margin-bottom: 20px">
                     <a class="list-group-item list-group-item-action" href="{{ route("slide.create") }}">
                         <i class="fa fa-image fa-fw"></i>
-                        Slide
+                        Slider
                     </a>
                     <a class="list-group-item list-group-item-action" href="{{ route("member.create") }}">
                         <i class="fa fa-users fa-fw"></i>
