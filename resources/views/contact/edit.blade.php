@@ -49,7 +49,7 @@
 
                 <form method="POST" action="{{ route('contact.update.email') }}">
                     <div class="form-group">
-                        <label for="email"> Nomor: </label>
+                        <label for="email"> E-Mail: </label>
                         <input type="text" id="email" name="email" class="form-control" value="{{ $email->caption }}">
                         <div class="invalid-feedback">
                             {{ $errors->first("email") }}
