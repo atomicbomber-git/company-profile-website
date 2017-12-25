@@ -56,6 +56,14 @@
 
                 </div>
 
+                <div class="form-group">
+                    <label for="description"> Deskripsi: </label>
+                    <textarea class="form-control {{ !$errors->has("description") ?: "is-invalid" }}" name="description" id="description">{{ old("description") }}</textarea>
+                    <span class="invalid-feedback">
+                        {{ $errors->first("invalid-date") }}
+                    </span>
+                </div>
+
                 <div style="text-align: right;">
                     <button class="btn btn-primary"> Tambahkan </button>
                 </div>

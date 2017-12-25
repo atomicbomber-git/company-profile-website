@@ -36,7 +36,8 @@ class PhotoController extends Controller
             "name" => "required|string|min:6",
             "image" => "required|file|mimes:jpg,jpeg,png",
             "date" => "required|date",
-            "category_id" => "sometimes|integer|min:0"
+            "category_id" => "sometimes|integer|min:0",
+            "description" => "required|string"
         ]);
 
         $data["image"] = ImageHelper::storeImage(request()->file("image"));

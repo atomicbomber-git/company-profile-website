@@ -45,6 +45,14 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="description"> Deskripsi: </label>
+                    <textarea class="form-control {{ !$errors->has("description") ?: "is-invalid" }}" name="description" id="description">{{ old("description", $photo->description) }}</textarea>
+                    <span class="invalid-feedback">
+                        {{ $errors->first("invalid-date") }}
+                    </span>
+                </div>
+
+                <div class="form-group">
                     <label for=""> Foto Sekarang: </label>
                     <img
                         style="width: 500px; height: auto"

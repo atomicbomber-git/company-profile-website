@@ -57,6 +57,8 @@
                                             <dd> {{ $photo->category->name }} </dd>
                                             <dt> Tanggal: </dt>
                                             <dd> {{ $photo->formattedDate() }} </dd>
+                                            <dt> Deskripsi: </dt>
+                                            <dd> {{ $photo->description }} </dd>
                                         </dl>
 
                                     </div>
