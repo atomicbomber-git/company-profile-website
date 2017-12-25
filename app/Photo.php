@@ -7,7 +7,7 @@ use Jenssegers\Date\Date;
 
 class Photo extends Model
 {
-    protected $fillable = ["name", "image", "category_id", "date"];
+    protected $fillable = ["name", "image", "category_id", "date", "description"];
 
     public function getCreatedAtAttribute($date) {
         return new Date($date);
