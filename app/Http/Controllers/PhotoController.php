@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Photo;
 use App\PhotoCategory;
+use App\PhotoLocation;
 use App\ImageHelper;
 use Storage;
 
@@ -20,7 +21,8 @@ class PhotoController extends Controller
         return view("photo.create", [
             "current_date" => \Date::now()->format("Y-m-d"),
             "photos" => Photo::all(),
-            "categories" => PhotoCategory::all()
+            "categories" => PhotoCategory::all(),
+            "locations" => PhotoLocation::all()
         ]);
     }
 
@@ -37,6 +39,7 @@ class PhotoController extends Controller
             "image" => "required|file|mimes:jpg,jpeg,png",
             "date" => "required|date",
             "category_id" => "sometimes|integer|min:0",
+            "location_id" => "integer|min:0",
             "description" => "required|string"
         ]);
 
@@ -73,7 +76,8 @@ class PhotoController extends Controller
     {
         return view("photo.edit", [
             "photo" => $photo,
-            "categories" => PhotoCategory::all()
+            "categories" => PhotoCategory::all(),
+            "locations" => PhotoLocation::all()
         ]);
     }
 
@@ -90,7 +94,9 @@ class PhotoController extends Controller
             "name" => "required|string|min:6",
             "image" => "sometimes|file|mimes:jpg,jpeg,png",
             "date" => "required|date",
-            "category_id" => "sometimes|integer|min:0"
+            "location_id" => "integer|min:0",
+            "category_id" => "sometimes|integer|min:0",
+            "description" => "required|string"
         ]);
 
         if (request()->file("image")) {

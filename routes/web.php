@@ -74,6 +74,14 @@ Route::prefix("/admin")->middleware("auth")->group(function() {
         Route::delete("/delete/{category}", "PhotoCategoryController@delete")->name("photo-category.delete");
         Route::patch("/update/{category}", "PhotoCategoryController@update")->name("photo-category.update");
     });
+
+    Route::prefix("/photo-location")->group(function() {
+        Route::get("/index", "PhotoLocationController@index")->name("photo-location.index");
+        Route::post("/store", "PhotoLocationController@store")->name("photo-location.store");
+
+        Route::delete("/delete/{location}", "PhotoLocationController@delete")->name("photo-location.delete");
+        Route::patch("/update/{location}", "PhotoLocationController@update")->name("photo-location.update");
+    });
 });
 
 Route::get("/photo/{photo}", "PhotoController@show")->name("photo.show");

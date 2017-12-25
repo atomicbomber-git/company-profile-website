@@ -37,6 +37,18 @@
                 </div>
 
                 <div class="form-group">
+                    <label for=""> Lokasi Foto </label>
+                    <select name="location_id" id="location" class="form-control {{ !$errors->has("location") ?: "is-invalid" }}">
+                        @foreach ($locations as $location)
+                            <option value="{{ $location->id }}"> {{ $location->name }} </option>
+                        @endforeach
+                    </select>
+                    <span class="invalid-feedback">
+                        {{ $errors->first("location") }}
+                    </span>
+                </div>
+
+                <div class="form-group">
                     <label for="date"> Tanggal: </label>
                     <input type="date" name="date" class="form-control {{ !$errors->has("date") ?: "is-invalid" }}" value="{{ old("date", $current_date) }}">
                     <span class="invalid-feedback">
@@ -108,8 +120,14 @@
                                                 <dt> Kategori: </dt>
                                                 <dd> {{ $photo->category->name }} </dd>
 
+                                                <dt> Lokasi: </dt>
+                                                <dd> {{ $photo->location->name }} </dd>
+
                                                 <dt> Tanggal: </dt>
                                                 <dd> {{ $photo->formattedDate() }} </dd>
+
+                                                <dt> Deskripsi: </dt>
+                                                <dd> {{ $photo->description }} </dd>
                                             </dl>
                                         </div>
                                     </p>

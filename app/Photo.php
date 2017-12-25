@@ -7,7 +7,7 @@ use Jenssegers\Date\Date;
 
 class Photo extends Model
 {
-    protected $fillable = ["name", "image", "category_id", "date", "description"];
+    protected $fillable = ["name", "image", "category_id", "location_id", "date", "description"];
 
     public function getCreatedAtAttribute($date) {
         return new Date($date);
@@ -26,5 +26,10 @@ class Photo extends Model
     public function category()
     {
         return $this->belongsTo("App\PhotoCategory")->withDefault(["name" => "Tidak Berkategori", "id" => ""]);
+    }
+
+    public function location()
+    {
+        return $this->belongsTo("App\PhotoLocation");
     }
 }

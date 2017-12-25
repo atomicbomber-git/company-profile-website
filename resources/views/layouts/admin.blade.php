@@ -36,6 +36,10 @@
                         <i class="fa fa-list fa-fw"></i>
                         Kategori Foto
                     </a>
+                    <a class="list-group-item list-group-item-action" href="{{ route("photo-location.index") }}">
+                        <i class="fa fa-map fa-fw"></i>
+                        Lokasi Foto
+                    </a>
                     <a class="list-group-item list-group-item-action" href="{{ route("photo.create") }}">
                         <i class="fa fa-image fa-fw"></i> 
                         Galeri Foto
